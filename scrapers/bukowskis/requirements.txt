@@ -1,0 +1,8 @@
+bs4
+requests
+lxml
+faker
+django
+django-dotenv
+tqdm
+tqdm-multi-thread

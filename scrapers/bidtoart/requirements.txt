@@ -1,0 +1,8 @@
+requests
+bs4
+lxml
+django
+tqdm
+python-telegram-bot
+django-dotenv
+psycopg2
