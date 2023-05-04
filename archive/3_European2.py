@@ -133,7 +133,7 @@ for cat in top_10_categories:
     top_10_cat_indexes.extend(list(indexes))
 df2 = df2[df2.index.isin(top_10_cat_indexes)]
 
-@st.cache(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
+@st.cache_data(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
 def create_treemap():
     return px.treemap(df2, path=[px.Constant("Techniques"), 'technique', 'author'], values='total_sales',
                       color='overbid_%',
@@ -229,7 +229,7 @@ create_credits('''Allikad: Eesti avalikud kunsti oksjonid (2001-2021)''')
 create_credits('''Muu: Inspireeritud Riivo Antoni loodud kunstiindeksist; <br>Heldet toetust pakkus <a href="https://tezos.foundation/">Tezos Foundation</a>''')
 toc.generate()
 
-@st.cache
+@st.cache_data
 def convert_df():
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return read_df('data/europe2.csv').to_csv().encode('utf-8')

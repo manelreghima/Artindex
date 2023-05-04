@@ -252,7 +252,7 @@ create_paragraph('This table shows the variation in the volume of more general t
 toc.subheader('Figure - Art Sales by Technique and Artist (Start and End Price Difference)')
 
 df['start_price'] = df['start_price'].fillna(df['end_price'])
-@st.cache(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
+@st.cache_data(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
 def create_treemap_overbid():
     df['overbid_%'] = (df['end_price'] - df['start_price'])/df['start_price'] * 100
     df2 = df[df["technique"] != " "]
@@ -312,7 +312,7 @@ This figure shows total sales revenue by author and technique in more detail, wi
 # FIGURE - treemap covering categories, techniques and authors by volume and overbid
 toc.subheader('Figure - Art Sales by Technique and Artist (Historical Price Performance)')
 
-@st.cache(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
+@st.cache_data(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
 def create_treemap_yearly():
     table_data = create_table(df, "author", list(df["author"].unique()), calculate_volume=False, table_height=250)
     df["yearly_performance"] = [table_data[table_data["Author"] == x]["Yearly growth (%)"] for x in df["author"]]
@@ -479,7 +479,7 @@ create_credits('''Source: Haus art auctions (1997-2022)''')
 create_credits('''Other credits: Inspired by the original Estonian Art Index created by Riivo Anton; <br>Generous support from <a href="https://tezos.foundation/">Tezos Foundation</a>''')
 toc.generate()
 
-@st.cache
+@st.cache_data
 def convert_df():
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return read_df('data/haus_cleaned.csv').to_csv().encode('utf-8')

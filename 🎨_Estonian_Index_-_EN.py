@@ -342,7 +342,7 @@ create_credits('''Other credits: Inspired by the original Estonian Art Index cre
 
 toc.generate()
 
-@st.cache
+# @st.cache_data()
 def convert_df():
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return read_df('data/auctions_clean.csv').to_csv().encode('utf-8')

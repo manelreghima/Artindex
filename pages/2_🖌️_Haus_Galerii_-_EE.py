@@ -184,7 +184,7 @@ create_paragraph('See tabel näitab üldisemate tehnikate volüümi kõikumist a
 toc.subheader('Joonis - Haamrihinnad tehnika ja kunstniku järgi (alghinna ja haamrihinna võrdlus)')
 
 df['start_price'] = df['start_price'].fillna(df['end_price'])
-@st.cache(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
+@st.cache_data(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
 def create_treemap_overbid():
     df['overbid_%'] = (df['end_price'] - df['start_price'])/df['start_price'] * 100
     df2 = df[df["technique"] != " "]
@@ -244,7 +244,7 @@ See joonis näitab müügi kogutulu autorite ja tehnikate lõikes detailsemalt, 
 # FIGURE - treemap covering categories, techniques and authors by volume and overbid
 toc.subheader('Joonis - Haamrihinnad tehnika ja kunstniku järgi (aastatulu)')
 
-@st.cache(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
+@st.cache_data(ttl=60*60*24*7, max_entries=300, allow_output_mutation=True)
 def create_treemap_yearly():
     table_data = create_table(df, "author", list(df["author"].unique()), calculate_volume=False, table_height=250)
     df["yearly_performance"] = [table_data[table_data["Autor"] == x]["Iga-aastane kasv (%)"] for x in df["author"]]
@@ -410,7 +410,7 @@ create_credits('''Allikad: Haus kunsti oksjonid (1997-2022)''')
 create_credits('''Muu: Inspireeritud Riivo Antoni loodud kunstiindeksist; <br>Heldet toetust pakkus <a href="https://tezos.foundation/">Tezos Foundation</a>''')
 toc.generate()
 
-@st.cache
+@st.cache_data
 def convert_df():
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return read_df('data/haus_cleaned.csv').to_csv().encode('utf-8')
