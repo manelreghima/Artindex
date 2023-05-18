@@ -68,16 +68,15 @@ st.title('Estonian Art Index')
 toc.header('Overview')
 create_paragraph('''Kanvas.ai Art Index is a tool for art investors.
 
-Kanvas.ai's art index is a database created based on Estonian art auction sales \nhistory of the last 20 years (2001-2021), with an aim of making art and investing \nin art easier to understand for anyone interested.
+Kanvas.ai's art index is a database created based on Estonian art auction sales \n history of the last 20 years (2001-2021), with the aim of making art and investing \n in art easier to understand for anyone interested.
 
 The data has been collected based on the results of the public auctions of the \nmain galleries in Estonia, which provides an overview of how the art market \nbehaves over time and which art mediums and authors have the best investment \nperformance.
 
-Based on the data, it is clear how the popularity of art has taken a big leap in \nrecent years, both in terms of prices and volume. For example, for many types of \nart work, the price increase or performance has been over 10% a year. Hence, a \nwell-chosen piece of art is a good choice to protect your money against inflation.
+Based on the data, it is clear how the popularity of art has taken a giant leap in \n recent years, both in terms of prices and volume. For example, for many types of \n artwork, the price increase or performance has been over 10% a year. Hence, a \n well-chosen piece of art is a good choice to protect your money against inflation.
 
-Kanvas.ai's Art Index currently does not include non-auction art information, but \nwe have a plan to start collecting data on NFT art media sold on the NFTKanvas.ai \npage as well.
+Kanvas.ai's Art Index currently does not include non-auction art information, but \n we plan to start collecting data on NFT art media sold on the NFTKanvas.ai \n page as well.
 
-The Art Index methodology is currently under development. Please email us info@kanvas.ai with any suggestions and comments.
-''')
+The Art Index methodology is currently under development. Please email us at info@kanvas.ai with any suggestions and comments.''')
 
 
 # FIGURE - date and average price
@@ -113,8 +112,7 @@ fig = go.Figure()
 fig.add_trace(go.Scatter(x=forecast['ds'], y=forecast['yhat'], mode='lines', name='Forecast'))
 st.plotly_chart(fig, use_container_width=True)
 
-create_paragraph('''According to these analysis, it is predicted that the art index price will experience a significant rise, increasing from 4,671.681 in February 2021 to 5,469.599 by December 2025.
-''')
+create_paragraph('''According to this analysis, it is predicted that the art index price will experience a significant rise, increasing from 4,671.681 in February 2021 to 5,469.599 by December 2025.''')
 # FIGURE - date and volume
 toc.subheader('Figure - Historical Volume Growth')
 fig = px.area(df_hist, x=df_hist.index, y="volume", 
@@ -126,8 +124,7 @@ fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
 st.plotly_chart(fig, use_container_width=True)
 create_paragraph('''The increase in volume gives us an overview of how much the turnover of auctions has risen and fallen over time.
 
-For example, in 2001 the auction turnover was around 174,000 euros, then in 2021 the auction turnover was 4.5 million. Certainly, the replacement of the kroon with the euro plays a very important role, and more auction galleries have been added. Still, art sales have seen a significant jump since 2019, the biggest in 20 years. The last major change occurred due to the effects of the 2006-2009 economic crisis.
-''')
+For example, in 2001 the auction turnover was around 174,000 euros, then in 2021, the auction turnover was 4.5 million. Certainly, the replacement of the kroon with the euro plays a very important role, and more auction galleries have been added. Still, art sales have seen a significant jump since 2019, the biggest in 20 years. The last major change occurred due to the effects of the 2006-2009 economic crisis.''')
 
 # TABLE - categories volume
 toc.subheader('Table - Historical Volume Growth by Technique')
@@ -218,7 +215,7 @@ artists = df2["author"].unique()
 artists = [artist for artist in artists if artist is not None]
 artists = np.concatenate([["All artists"], artists])
 
-selected_artist2 =st.selectbox('Select an author', options=artists, key="2")
+selected_artist2 =st.selectbox('Select an artist', options=artists, key="2")
 if selected_artist2=='All artists':
 
     fig = px.treemap(df2, path=[px.Constant("Techniques"), 'category', 'technique', 'author'], values='total_sales',
@@ -275,7 +272,7 @@ For example, the blue color shows artists and mediums, which had the highest his
 author_sum = df.groupby(["author"], sort=False)["end_price"].sum()
 top_authors = author_sum.sort_values(ascending=False)[:10]
 
-toc.subheader('Table - Top 10 Best Performing Artists (Price Perfomance)')
+toc.subheader('Table - Top 10 Best Performing Artists (Price Performance)')
 table_data = create_table(df, "author", top_authors.index, calculate_volume=False, table_height=250)    
 st.table(table_data)
 create_paragraph('''This table shows the most popular artists and their historical price growth percentage. The percentage is calculated based on annual average end price differences.
@@ -284,10 +281,10 @@ Leading this table is Konrad Mägi, whose growth percentage is on average 198.95
 ''')
 
 # TABLE - best authors volume
-toc.subheader('Table - Top 10 Best Performing Artist (Volume Growth)')
+toc.subheader('Table - Top 10 Best Performing Artists (Volume Growth)')
 table_data = create_table(df, "author", top_authors.index, calculate_volume=True, table_height=250)    
 st.table(table_data)
-create_paragraph('''This table shows the turnover and average annual growth of art works. Here Wiiralt is positioned at 8th place and Konrad Mägi at 1st. Because the growth percentage is during the whole period (2001-2021) turnover, then the artists, who have the most works bought, are situated at the top of the table.
+create_paragraph('''This table shows the turnover and average annual growth of artworks. Here Wiiralt is positioned at 8th place and Konrad Mägi at 1st. Because the growth percentage is during the whole period (2001-2021) turnover, then the artists, who have the most works bought, are situated at the top of the table.
 ''')
 
 # FIGURE - date and price
@@ -310,8 +307,7 @@ fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
 st.plotly_chart(fig, use_container_width=True)
 create_paragraph('''From the given graph, it is possible to determine the price of the work according to the age and technique of the work of art. Techniques are separated by color.
 
-The oldest work dates back to 1900, but is not the most expensive. In general, it can be seen that older works are more expensive, with the exception of Olev Subbi. It can be seen that pre-World War II works from 1910-1940 have been sold higher.
-''')
+The oldest work dates back to 1900 but is not the most expensive. In general, it can be seen that older works are more expensive, with the exception of Olev Subbi. It can be seen that pre-World War II works from 1910-1940 have been sold higher.''')
 
 # FIGURE - size and price
 toc.subheader('Figure - Size of Art Work vs Price')
@@ -330,8 +326,7 @@ fig = px.scatter(df.dropna(subset=["dimension"]), x="dimension", y="end_price", 
                   })
 fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
 st.plotly_chart(fig, use_container_width=True)
-create_paragraph('''An overview of the relationship between the dimensions, technique and price of the work. Many smaller format works are often more expensive than large ones. The size of the piece does not necessarily mean that it is more expensive. Rather, the author is more important, and then the size of the work. For example, Konrad Mägi's Õlimaa is among the averages on the measurement chart, but considerably higher than the others on the price scale (127,823 euros hammer price), while the hammer price of the largest work (Toomas Vint) is €7,094.
-''')
+create_paragraph('''An overview of the relationship between the dimensions, technique, and price of the work. Many smaller format works are often more expensive than large ones. The size of the piece does not necessarily mean that it is more expensive. Rather, the author is more important, and than the size of the work. For example, Konrad Mägi's Õlimaa is among the averages on the measurement chart, but considerably higher than the others on the price scale (127,823 euros hammer price), while the hammer price of the largest work (Toomas Vint) is €7,094.''')
 
 def create_credits(text):
     st.markdown('<span style="word-wrap:break-word;font-family:Source Code Pro;font-size: 14px;">' + text + '</span>', unsafe_allow_html=True)
