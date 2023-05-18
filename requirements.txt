@@ -4,3 +4,4 @@ deta
 pandas
 streamlit
 numpy
+prophet
